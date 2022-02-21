@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.example</groupId>
+	<artifactId>example-jxls</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>example-jxls</name>
+	<description>Example of the use of JXLS Example with HSQL Timesheet DataBase </description>
+
+	<!-- Parent Component & version -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.4.12</version>
+		<relativePath/>
+	</parent>
+
+	<!-- Properties -->
+	<properties>
+		<!-- Java Version -->
+		<java.version>11</java.version>
+		<!-- Files Encoding -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- Fake Data Generator -->
+		<javafaker.version>1.0.2</javafaker.version>
+		<!-- JXLS -->
+		<jxls.version>2.9.0</jxls.version>
+	</properties>
+
+	<!-- Dependencies -->
+	<dependencies>
+
+		<!-- Fake Data Generator -->
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>${javafaker.version}</version>
+		</dependency>
+
+		<!-- JXLS -->
+		<dependency>
+			<groupId>org.jxls</groupId>
+			<artifactId>jxls</artifactId>
+			<version>${jxls.version}</version>
+		</dependency>
+
+		<!-- JXLS-POI -->
+		<dependency>
+			<groupId>org.jxls</groupId>
+			<artifactId>jxls-poi</artifactId>
+			<version>${jxls.version}</version>
+		</dependency>
+
+		<!-- JPA + HIBERNATE + JDBC + etc -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+		</plugins>
+
+	</build>
+</project>
