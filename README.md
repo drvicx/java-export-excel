@@ -16,7 +16,7 @@ Support project for Timesheet Cloud 2.0 WebApp - Export data to Excel spreadshee
 - LINKS:<br>
   (1) [JXLS - A small Java library to make generation of Excel reports easy](http://jxls.sourceforge.net/index.html) <br>
   (2) [GitHub - Andress Sacco - Example of JXLS](https://github.com/andres-sacco/example-jxls) <br>
-  (3) [GitHub - Java Faker - This library generates fake data](https://github.com/andres-sacco/example-jxls) <br>
+  (3) [GitHub - Java Faker - This library generates fake data](https://github.com/DiUS/java-faker) <br>
   (4) [Baeldung - A Guide to JavaFaker](https://www.baeldung.com/java-faker) <br>
   <br>
 
