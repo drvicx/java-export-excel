@@ -23,6 +23,20 @@ Support project for Timesheet Cloud 2.0 WebApp - Export data to Excel spreadshee
 **=CHANGE LOG**<br>
 *новые записи в начале <br>
 
+02: 20220225_1310:
+<pre>
+- реализован вывод своих тестовых данных для Табеля/Timesheet;
+- созданы Excel-шаблон "timesheetTemplate.xls";
+- в конфигурацию зависимостей проекта (pom.xml) добавлена библиотека Lombok 1.18.20 для упрощения описания getter/setter методов;
+- созданы Entity-классы Orgdata, User, Timedata;
+- создан DAO-класс TimesheetDao содержащий статические данные для вывода в отчет;
+- создан класс Сервисного слоя TimesheetService в котором производится вызов Timesheet отчета с подключением шаблона;
+- внесены изменения в исполняемый класс приложения Application: откл. формирование Client отчета и вкл. формирование Timesheet;
+
+- изменения отправлены в ветку "release-2.0" репозитория после чего произведено слияние с веткой "main";
+- приложению присвоен тег версии 2.0 на основе которого на GitHub создан релиз v2.0;
+</pre>
+
 01: 20220221_1610:
 <pre>
 - за основу взят проект (2), внесены исправления в файл pom.xml т.к код не компилировался;  
@@ -67,9 +81,17 @@ Support project for Timesheet Cloud 2.0 WebApp - Export data to Excel spreadshee
 
 **=APP-PREVIEW**
 
-- App v1.0 -- Excel шаблон - clientsTemplate.xls <br>
-  ![clientsTemplate.xls](_preview/v10_clientsTemplate.png?raw=true)
+- App v2.0 -- Excel шаблон - timesheetTemplate.xls <br>
+  ![clientsTemplate_xls](_preview/v20_timesheetTemplate.png?raw=true)
   <br><br>
-  
+
+- App v2.0 -- Сформированный Excel отчет - timesheet.xls <br>
+  ![clients_xls](_preview/v20_timesheet.png?raw=true)
+  <br><br><br>  
+
+- App v1.0 -- Excel шаблон - clientsTemplate.xls <br>
+  ![clientsTemplate_xls](_preview/v10_clientsTemplate.png?raw=true)
+  <br><br>
+
 - App v1.0 -- Сформированный Excel отчет - clients.xls <br>
-  ![clients.xls](_preview/v10_clients.png?raw=true)
+  ![clients_xls](_preview/v10_clients.png?raw=true)
