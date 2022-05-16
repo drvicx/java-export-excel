@@ -3,12 +3,15 @@ package com.example.jxls.dao;
 import com.example.jxls.model.Orgdata;
 import com.example.jxls.model.User;
 import com.example.jxls.model.Timedata;
+import com.example.jxls.model.ReportTitle;		//--NEW
+import com.example.jxls.util.DateTimeUtil;		//--NEW 2022.03.09 15:00
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.math.BigDecimal;
+
+//import javax.persistence.Column;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
+//import javax.persistence.Id;
+//import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,24 +24,63 @@ import java.util.Map;
  */
 public class TimesheetDao {
 
+	//--DEPENDENCY INJECTION
+	//DateTimeUtil dtu = new DateTimeUtil();
+
+	//--RETURNS REPORT TITLE DATA SINGLE OBJECT
+	public ReportTitle getReportTitle() {
+
+		ReportTitle reportTitle = new ReportTitle();
+
+		//--REPORT TITLE INFO
+		reportTitle.setId(1L);									//--01	ID				-- id				-- Идентификатор Отчета
+		reportTitle.setTableNum("5/2");							//--02	TABLENUM		-- tableNum     	-- Табель №
+		reportTitle.setPeriodFromDay(1L);						//--03	PERIOD_FROMDAY	-- periodFromDay	-- за период с  1 	 --номер дня месяца
+		reportTitle.setPeriodToDay(31L);						//--04	PERIOD_TODAY	-- periodToDay		--           по 31 	 --номер дня месяца
+		reportTitle.setPeriodMonthName("декабря");				//--05: PERIOD_MONTH	-- periodMonthName               декабря --название месяца
+		reportTitle.setPeriodYear(2020L);						//--06: PERIOD_YEAR		-- periodYear             	     2020 г. --год отчета
+		//reportTitle.setDate1(LocalDate.parse("2020-11-30"));	//--07: DATE1			-- date1            -- Дата
+		//reportTitle.setDate2(LocalDate.parse("2020-12-23"));	//--08: DATE2			-- date2            -- Дата формирования документа
+		reportTitle.setDate1("30.11.2020");
+		reportTitle.setDate2("23.12.2020");
+		//reportTitle.setEditNum(1L);							//--09: EDITNUM 		-- editNum          -- Номер корректировки
+		reportTitle.setTableType(0L);							//--10: TABLETYPE		-- tableType        -- Вид табеля (первичный - 0; корректирующий - 1, 2, и т.д.)
+
+		//--Return ReportTitle Object
+		return reportTitle;
+	}
+
 	//--RETURNS SINGLE ORGDATA OBJECT
 	public Orgdata getOrgdata() {
 
 		Orgdata org = new Orgdata();
+		//--dates:v4 -- вынес Методы работы с датой-временем в отдельный Инструментальный Класс
+		//DateTimeUtil dtu = new DateTimeUtil();
 
 		//--CONTORA
-		org.setRecordId(1L);									//--01	ID 			-- recordId
-		org.setOrgName("ООО Рога и копыта");					//--02	ORGNAME		-- orgName
-		org.setDepName("Отдел по заготовке рогов и копыт");		//--03	DEPNAME		-- depName
-		org.setOkud("123456789");								//--04	OKUD 		-- okud
-		org.setOkpo("987654321");								//--05	OKPO 		-- okpo
-		org.setDepBoss("З.П. Фунт");							//--06	DEPBOSS		-- depBoss
-		org.setResponder("Ш.П. Балаганов");						//--07	RESPONDER	-- responder
-		org.setLogo1("assets/images/logo_rik_1.png");			//--08	LOGO1		-- logo1
-		org.setLogo2("assets/images/logo_rik_2.png");			//--09	LOGO2		-- logo2
+		org.setRecordId(1L);									//--01	ID 				-- recordId
+		org.setOrgName("ООО Рога и копыта");					//--02	ORGNAME			-- orgName
+		org.setDepName("Отдел по заготовке рогов и копыт");		//--03	DEPNAME			-- depName
+		org.setOkud("123456789");								//--04	OKUD 			-- okud
+		org.setOkpo("987654321");								//--05	OKPO 			-- okpo
+		org.setDepBoss("З.П. Фунт");							//--06	DEPBOSS			-- depBoss
+		org.setDepBossPos("Начальник");							//--07	DEPBOSS_POS		-- depBossPos
+		org.setResponder("Ш.П. Балаганов");						//--08	RESPONDER		-- responder
+		org.setResponderPos("Программист");						//--09	RESPONDER_POS	-- responderPos
+		org.setLogo1("assets/images/logo_rik_1.png");			//--08	LOGO1			-- logo1
+		org.setLogo2("assets/images/logo_rik_2.png");			//--09	LOGO2			-- logo2
 		//--dates
-		org.setDateBegin(getCurrentDatePlus().get(0));			//--10	BEGINDATE	-- dateBegin	--текущая дата
-		org.setDateEnd(getCurrentDatePlus().get(1));			//--11	ENDDATE		-- dateEnd		--+ 1 день (контора однодневка)
+		//org.setDateBegin(getCurrentDatePlus().get(0));		//--10	BEGINDATE		-- dateBegin	--текущая дата
+		//org.setDateEnd(getCurrentDatePlus().get(1));			//--11	ENDDATE			-- dateEnd		--+ 1 день (контора однодневка)
+
+		//--dates:v4.1 -- вынес Методы работы с датой-временем в отдельный Инструментальный Класс
+		DateTimeUtil dtu = new DateTimeUtil();
+		org.setDateBegin(dtu.getCurrentDatePlus().get(0));		//--10	BEGINDATE		-- dateBegin	--текущая дата
+		org.setDateEnd(dtu.getCurrentDatePlus().get(1));		//--11	ENDDATE			-- dateEnd		--+ 1 день (контора однодневка)
+
+		//--dates:v4.2 -- вынес объект для доступа в поле класса - ВОЗМОЖНО НЕ ПРАВИЛЬНО
+	    //org.setDateBegin(dtu.getCurrentDatePlus().get(0));	//--10	BEGINDATE		-- dateBegin	--текущая дата
+	    //org.setDateEnd(dtu.getCurrentDatePlus().get(1));		//--11	ENDDATE			-- dateEnd		--+ 1 день (контора однодневка)
 
 		//--Return Orgdata Object
 		return org;
@@ -53,6 +95,9 @@ public class TimesheetDao {
 		//LocalDate nowDate = LocalDate.now();
 		//LocalDate nowDatePlus1Day = nowDate.plusDays(1);
 
+		//--dates:v4.1 -- вынес Методы работы с датой-временем в отдельный Инструментальный Класс
+		DateTimeUtil dtu = new DateTimeUtil();
+
 		//--CONTORA 1
 		Orgdata org1 = new Orgdata();
 		org1.setRecordId(1L);
@@ -61,7 +106,9 @@ public class TimesheetDao {
 		org1.setOkud("123456789");
 		org1.setOkpo("987654321");
 		org1.setDepBoss("Фунт ЗП");
+		org1.setDepBossPos("Начальник");
 		org1.setResponder("Балаганов ШП");
+		org1.setResponderPos("Программист");
 		org1.setLogo1("assets/images/logo_rik_1.png");
 		org1.setLogo2("assets/images/logo_rik_2.png");
 		//--dates:v1
@@ -71,8 +118,11 @@ public class TimesheetDao {
 		//org1.setDateBegin(nowDate);
 		//org1.setDateEnd(nowDatePlus1Day);
 		//--dates:v3
-		org1.setDateBegin(getCurrentDatePlus().get(0));			//--текущая дата
-		org1.setDateEnd(getCurrentDatePlus().get(1));			//--текущая дата + 1 день (контора однодневка)
+		//org1.setDateBegin(getCurrentDatePlus().get(0));			//--текущая дата
+		//org1.setDateEnd(getCurrentDatePlus().get(1));				//--текущая дата + 1 день (контора однодневка)
+		//--dates:v4.1
+		org1.setDateBegin(dtu.getCurrentDatePlus().get(0));			//--текущая дата
+		org1.setDateEnd(dtu.getCurrentDatePlus().get(1));			//--текущая дата + 1 день (контора однодневка)
 
 		//--CONTORA 2
 		Orgdata org2 = new Orgdata();
@@ -105,6 +155,8 @@ public class TimesheetDao {
 	public List<User> getAllUsers() {
 
 		List<User> users = new ArrayList<>();
+		//--dates:v4.1 -- вынес Методы работы с датой-временем в отдельный Инструментальный Класс
+		DateTimeUtil dtu = new DateTimeUtil();
 
 		//--User1
 		User user1 = new User();
@@ -114,7 +166,8 @@ public class TimesheetDao {
 		user1.setMiddleName("Председатель");					//--04	MIDLENAME		-- middleName 		-- String
 		user1.setLastName("Фунт");								//--05	LASTNAME		-- lastName 		-- String
 		user1.setFullNameAlias("Фунт З.П.");					//--06	FULLNAMEALIAS	-- fullNameAlias 	-- String
-		user1.setBirthDate(getDateFromString("1902-09-20"));	//--07	BIRTHDATE		-- birthDate 		-- LocalDate
+	  //user1.setBirthDate(getDateFromString("1902-09-20"));	//--07	BIRTHDATE		-- birthDate 		-- LocalDate
+		user1.setBirthDate(dtu.getDateFromString("1902-09-20"));	//--07	BIRTHDATE		-- birthDate 		-- LocalDate
 		user1.setLogin("funt_zp");								//--08	LOGIN 			-- login 			-- String
 		user1.setPositionEng("boss");							//--09	POSITION_E 		-- positionEng 		-- String
 		user1.setPositionRus("Начальник");						//--10	POSITION_R 		-- positionRus		-- String
@@ -127,8 +180,12 @@ public class TimesheetDao {
 		user1.setSocialLink2("https://ru.wikipedia.org/wiki/Павленко,_Павел_Павлович");		//--16	SOCIAL_LINK2 	-- socialLink2		-- String
 		user1.setSocialLink3(null);															//--17	SOCIAL_LINK3 	-- socialLink3		-- String
 		user1.setAccessLevel("head");							//--18	ACCESSLEVEL 	-- accessLevel		-- String
-		user1.setHireDate(getDateFromString("2017-01-01"));		//--19	HIRED 			-- hireDate			-- LocalDate
-		user1.setFireDate(getDateFromString("2021-06-30"));		//--20	FIRED 			-- fireDate			-- LocalDate
+      //user1.setHireDate(getDateFromString("2017-01-01"));		//--19	HIRED 			-- hireDate			-- LocalDate
+      //user1.setFireDate(getDateFromString("2021-06-30"));		//--20	FIRED 			-- fireDate			-- LocalDate
+		//--dates:v4.1
+		user1.setHireDate(dtu.getDateFromString("2017-01-01"));
+		user1.setFireDate(dtu.getDateFromString("2021-06-30"));
+
 
 		//--User2
 		User user2 = new User();
@@ -138,7 +195,8 @@ public class TimesheetDao {
 		user2.setMiddleName("Ибрагимович");
 		user2.setLastName("Бендер");
 		user2.setFullNameAlias("Бендер О.И.");
-		user2.setBirthDate(getDateFromString("1935-03-16"));
+      //user2.setBirthDate(getDateFromString("1935-03-16"));
+		user2.setBirthDate(dtu.getDateFromString("1935-03-16"));			//--dates:v4.1
 		user2.setLogin("bender_oi");
 		user2.setPositionEng("creator");
 		user2.setPositionRus("Организатор");
@@ -151,7 +209,8 @@ public class TimesheetDao {
 		user2.setSocialLink2("https://ru.wikipedia.org/wiki/Юрский,_Сергей_Юрьевич");
 		user2.setSocialLink3(null);
 		user2.setAccessLevel("admin");
-		user2.setHireDate(getDateFromString("2017-01-01"));
+	  //user2.setHireDate(getDateFromString("2017-01-01"));
+		user2.setHireDate(dtu.getDateFromString("2017-01-01"));				//--dates:v4.1
 		user2.setFireDate(null);
 
 		//--User3
@@ -162,7 +221,8 @@ public class TimesheetDao {
 		user3.setMiddleName("Петрович");
 		user3.setLastName("Балаганов");
 		user3.setFullNameAlias("Балаганов Ш.П.");
-		user3.setBirthDate(getDateFromString("1936-10-08"));
+	  //user3.setBirthDate(getDateFromString("1936-10-08"));
+		user3.setBirthDate(dtu.getDateFromString("1936-10-08"));			//--dates:v4.1
 		user3.setLogin("balagan_off");
 		user3.setPositionEng("programmer");
 		user3.setPositionRus("Программист");
@@ -175,7 +235,8 @@ public class TimesheetDao {
 		user3.setSocialLink2("https://ru.wikipedia.org/wiki/Куравлёв,_Леонид_Вячеславович");
 		user3.setSocialLink3(null);
 		user3.setAccessLevel("user");
-		user3.setHireDate(getDateFromString("2017-01-01"));
+	  //user3.setHireDate(getDateFromString("2017-01-01"));
+		user3.setHireDate(dtu.getDateFromString("2017-01-01"));				//--dates:v4.1
 		user3.setFireDate(null);
 
 		//--User4
@@ -186,7 +247,8 @@ public class TimesheetDao {
 		user4.setMiddleName("Самуэлевич");
 		user4.setLastName("Паниковский");
 		user4.setFullNameAlias("Паниковский М.С.");
-		user4.setBirthDate(getDateFromString("1916-09-21"));
+	  //user4.setBirthDate(getDateFromString("1916-09-21"));
+		user4.setBirthDate(dtu.getDateFromString("1916-09-21"));		//--dates:v4.1
 		user4.setLogin("panic_ms");
 		user4.setPositionEng("programmer");
 		user4.setPositionRus("Программист");
@@ -199,7 +261,8 @@ public class TimesheetDao {
 		user4.setSocialLink2("https://ru.wikipedia.org/wiki/Гердт,_Зиновий_Ефимович");
 		user4.setSocialLink3(null);
 		user4.setAccessLevel("user");
-		user4.setHireDate(getDateFromString("2017-01-01"));
+	  //user4.setHireDate(getDateFromString("2017-01-01"));
+		user4.setHireDate(dtu.getDateFromString("2017-01-01"));			//--dates:v4.1
 		user4.setFireDate(null);
 
 		//--Add Objects to Array List
@@ -217,6 +280,8 @@ public class TimesheetDao {
 	public List<Timedata> getAllTimedata() {
 
 		List<Timedata> timedatas = new ArrayList<>();
+		//--dates:v4.1 -- вынес Методы работы с датой-временем в отдельный Инструментальный Класс
+		DateTimeUtil dtu = new DateTimeUtil();
 
 		//--User1 Day1 Timedata
 		//Timedata tdUser1Day1 = new Timedata();
@@ -246,17 +311,18 @@ public class TimesheetDao {
 
 			for (int t = 0; t < 3; t++) {
 				Timedata td = new Timedata();
-				globalRecordId += 1L;										 //-- dynamic Timedata ID (global)
-				//Long recordId = (long) (t + 1);                            //-- dynamic Timedata ID (local)
-				String tdDay = String.format("%02d", t + 1);                 //-- dynamic Day
-				LocalDate tdDate = getDateFromString("2020-12-" + tdDay);    //-- dynamic Timedata Date
-				//Long userId = 1L;                                          //-- static User ID
+				globalRecordId += 1L;										 	//-- dynamic Timedata ID (global)
+				//Long recordId = (long) (t + 1);                            	//-- dynamic Timedata ID (local)
+				String tdDay = String.format("%02d", t + 1);                 	//-- dynamic Day
+				//LocalDate tdDate = getDateFromString("2020-12-" + tdDay);  	//-- dynamic Timedata Date
+				LocalDate tdDate = dtu.getDateFromString("2020-12-" + tdDay);  	//--dates:v4.1
+				//Long userId = 1L;                                          	//-- static User ID
 
 				//td.setId(recordId);
 				td.setId(globalRecordId);
-				td.setUserId(userId);										//-- dynamic User ID
-				//td.setDate(getDateFromString("2020-12-01"));				//-- static Date
-				td.setDate(tdDate);                                         //-- dynamic Date
+				td.setUserId(userId);											//-- dynamic User ID
+				//td.setDate(getDateFromString("2020-12-01"));					//-- static Date
+				td.setDate(tdDate);                                         	//-- dynamic Date
 				td.setHour(8);
 				td.setType("Я");
 
@@ -288,42 +354,43 @@ public class TimesheetDao {
 		tdUser1Day4.setType("Я");
 		*/
 
-/*
-640	1	2020-12-03	8	Я
-641	1	2020-12-04	8	Я
-642	1	2020-12-05	0	в
-643	1	2020-12-06	0	в
-644	1	2020-12-07	8	Я
-645	1	2020-12-08	8	Я
-646	1	2020-12-09	8	Я
-647	1	2020-12-10	8	Я
-648	1	2020-12-11	8	Я
-649	1	2020-12-12	0	в
-650	1	2020-12-13	0	в
-651	1	2020-12-14	8	Я
-652	1	2020-12-15	8	Я
-653	1	2020-12-16	8	Я
-654	1	2020-12-17	8	Я
-655	1	2020-12-18	8	Я
-656	1	2020-12-19	0	в
-657	1	2020-12-20	0	в
-658	1	2020-12-21	8	Я
-659	1	2020-12-22	8	Я
-660	1	2020-12-23	8	Я
-661	1	2020-12-24	8	Я
-662	1	2020-12-25	8	Я
-663	1	2020-12-26	0	в
-664	1	2020-12-27	0	в
-665	1	2020-12-28	8	Я
-666	1	2020-12-29	8	Я
-667	1	2020-12-30	8	Я
-668	1	2020-12-31	7	Я
-..
- */
+		//--EXAMPLE DATA OUTPUT
+		/*
+			640	1	2020-12-03	8	Я
+			641	1	2020-12-04	8	Я
+			642	1	2020-12-05	0	в
+			643	1	2020-12-06	0	в
+			644	1	2020-12-07	8	Я
+			645	1	2020-12-08	8	Я
+			646	1	2020-12-09	8	Я
+			647	1	2020-12-10	8	Я
+			648	1	2020-12-11	8	Я
+			649	1	2020-12-12	0	в
+			650	1	2020-12-13	0	в
+			651	1	2020-12-14	8	Я
+			652	1	2020-12-15	8	Я
+			653	1	2020-12-16	8	Я
+			654	1	2020-12-17	8	Я
+			655	1	2020-12-18	8	Я
+			656	1	2020-12-19	0	в
+			657	1	2020-12-20	0	в
+			658	1	2020-12-21	8	Я
+			659	1	2020-12-22	8	Я
+			660	1	2020-12-23	8	Я
+			661	1	2020-12-24	8	Я
+			662	1	2020-12-25	8	Я
+			663	1	2020-12-26	0	в
+			664	1	2020-12-27	0	в
+			665	1	2020-12-28	8	Я
+			666	1	2020-12-29	8	Я
+			667	1	2020-12-30	8	Я
+			668	1	2020-12-31	7	Я
+			..
+		 */
 	}
 
 
-
+	/*
 	//--DATE GETTERS--
 
 	//--RETURNS NOW DATE: for example: "2021-12-16"
@@ -349,6 +416,7 @@ public class TimesheetDao {
 
 		return dates;
 	}
+	*/
 
 	//--RETURNS KEY-VALUE HASHMAP OF 2 DATES - NOW & NOW+1d: for example: {"now": "2021-12-16", "nowPlus1Day": "2021-12-17"}
 	private Map<String, LocalDate> getDatesKV() {
