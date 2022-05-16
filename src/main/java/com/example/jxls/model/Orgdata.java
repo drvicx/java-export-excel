@@ -38,8 +38,14 @@ public class Orgdata {
     @Column(name="DEPBOSS")
     private String depBoss;
 
+    @Column(name="DEPBOSS_POS")
+    private String depBossPos;
+
     @Column(name="RESPONDER")
     private String responder;
+
+    @Column(name="RESPONDER_POS")
+    private String responderPos;
 
     @Column(name="LOGO1")
     private String logo1;
