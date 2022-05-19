@@ -44,7 +44,7 @@ public class TimesheetV3Service {
         data.put("repTS", nowDate);                             //--dynamic Date  --repTS: report timestamp
 
         //--DEBUG
-        //logger.debug("=DEBUG: TimesheetService: data" + data);
+        //logger.debug("=DEBUG: TimesheetV3Service: data" + data);
 
         //--Create report
         report.createDocument(outStream, templateName, data);

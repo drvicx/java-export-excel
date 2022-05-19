@@ -1,0 +1,17 @@
+.style1 {
+    display: block;
+    unicode-bidi: embed;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: normal;
+    color: mediumvioletred;
+}
+
+.style2 {
+    display: block;
+    unicode-bidi: embed;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: normal;
+    color: darkblue;
+}

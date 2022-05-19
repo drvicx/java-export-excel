@@ -1,0 +1,30 @@
+.indexPage-style {
+    display: block;
+    unicode-bidi: embed;
+    font-family: monospace;
+    font-size: 20px;
+    padding-left: 50px;
+    font-weight: normal;
+    color: blue;
+}
+
+.style3 {
+    display: block;
+    unicode-bidi: embed;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: normal;
+    color: red;
+}
+
+.img1 {
+    width: 300px;
+}
+
+.img2 {
+    width: 300px;
+}
+
+.img3 {
+    width: 200px;
+}

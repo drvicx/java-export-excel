@@ -4,9 +4,15 @@ Support project for Timesheet Cloud 2.0 WebApp - Export data to Excel spreadshee
 
 **=INFO**
 - DEPENDENCIES:<br>
-  Oracle Java JDK  17  (build 17.0.1+12-LTS-39) <br>
-  Spring Boot 2.4.12 Starter + Spring Boot Data JPA <br>
+  Oracle Java JDK 17 (build 17.0.1+12-LTS-39) <br>
   Spring Boot Maven Plugin <br>
+  Spring Boot Starter 2.6.7  (parent) <br>
+  Spring Boot Starter Web <br>
+  Spring Boot Starter Data JPA <br>
+  Tomcat Embed Jasper (JSP Support) <br>
+  Java Standard Tag Library (JSTL) <br>
+  Apache Tiles JSP 3.0.8 (Template Engine for JSP) <br>
+  Lombok 1.18.20 <br>
   Jxls 2.9.0 <br>
   Java Faker 1.0.2 <br>
   HSQLDB 2.5.1 <br>
@@ -22,10 +28,23 @@ Support project for Timesheet Cloud 2.0 WebApp - Export data to Excel spreadshee
   (5) [Baeldung - Introduction to JDBC](https://www.baeldung.com/java-jdbc) <br>
   (6) [HSQLDB - 100% Java Database](http://hsqldb.org/) <br>
   (7) [HSQLDB Guide - Chapter 9. SQL-Invoked Routines](https://hsqldb.org/doc/guide/sqlroutines-chapt.html) <br>
+  (8) [Baeldung - Spring Boot With JavaServer Pages (JSP)](https://www.baeldung.com/spring-boot-jsp) <br>
+  (9) [Spring Boot and JSP Tutorial with Examples](https://o7planning.org/11681/spring-boot-and-jsp) <br>
+  (10) [Spring Boot JSP Tutorial with Example](https://hellokoding.com/spring-boot-hello-world-example-with-jsp/) <br>
+
   <br>
 
 **=CHANGE LOG**<br>
 *новые записи в начале <br>
+
+04: 20220520_0050:
+<pre>
+- реализован каркас Spring Boot Web MVC приложения необходимого для дальнейшей работы;
+- далее необходимо будет реализовать выгрузку Excel формы Табеля из HTML-страницы веб-приложения;
+
+- изменения отправлены в ветку "release-3.1" репозитория после чего произведено слияние с веткой "main";
+- приложению присвоен тег версии 3.1 на основе которого на GitHub создан релиз v3.1;
+</pre>
 
 03: 20220516_1430:
 <pre>
@@ -108,6 +127,19 @@ Support project for Timesheet Cloud 2.0 WebApp - Export data to Excel spreadshee
 <br>
 
 **=APP-PREVIEW**
+
+- App v3.1 -- Spring Boot Web MVC App - index.jsp <br>
+  ![clientsTemplate_xls](_preview/v31_spring-boot-webmvc_index_jsp.png?raw=true)
+  <br>
+
+- App v3.1 -- Spring Boot Web MVC App - helloEsp.jsp <br>
+  ![clientsTemplate_xls](_preview/v31_spring-boot-webmvc_hello-esp_jsp.png?raw=true)
+  <br>
+
+- App v3.1 -- Spring Boot Web MVC App - helloRus.jsp <br>
+  ![clientsTemplate_xls](_preview/v31_spring-boot-webmvc_hello-rus_jsp.png?raw=true)
+  <br><br><br>
+
 
 - App v3.0 -- Excel шаблон - timesheetTemplate30.xls <br>
   ![clientsTemplate_xls](_preview/v30_timesheetTemplate.png?raw=true)

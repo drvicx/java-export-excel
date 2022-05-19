@@ -19,7 +19,7 @@ import java.sql.SQLException;
 public class TestHSQLDBv011 {
 
     //=МЕТОД ВЫЗОВА ХП БЕЗ ПАРАМЕТРОВ -- sp_getTestDataV2()
-    public static void getTimesheetDataV2() {
+    public static void getTimesheetDataV3() {
 
         //--параметры подключения
         Connection conn = null;
@@ -224,7 +224,7 @@ public class TestHSQLDBv011 {
      */
     public static void main(String args[]) {
         //-вызываем метод получения и вывода данных в консоль;
-        getTimesheetDataV2();
+        getTimesheetDataV3();
     }
 
     //=OUTPUT:
