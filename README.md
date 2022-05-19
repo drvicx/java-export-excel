@@ -4,9 +4,15 @@ Support project for Timesheet Cloud 2.0 WebApp - Export data to Excel spreadshee
 
 **=INFO**
 - DEPENDENCIES:<br>
-  Oracle Java JDK  17  (build 17.0.1+12-LTS-39) <br>
-  Spring Boot 2.4.12 Starter + Spring Boot Data JPA <br>
+  Oracle Java JDK 17 (build 17.0.1+12-LTS-39) <br>
   Spring Boot Maven Plugin <br>
+  Spring Boot Starter 2.6.7  (parent) <br>
+  Spring Boot Starter Web <br>
+  Spring Boot Starter Data JPA <br>
+  Tomcat Embed Jasper (JSP Support) <br>
+  Java Standard Tag Library (JSTL) <br>
+  Apache Tiles JSP 3.0.8 (Template Engine for JSP) <br>
+  Lombok 1.18.20 <br>
   Jxls 2.9.0 <br>
   Java Faker 1.0.2 <br>
   HSQLDB 2.5.1 <br>
