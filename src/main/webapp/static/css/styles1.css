@@ -1,0 +1,40 @@
+.indexPage-style {
+    display: block;
+    unicode-bidi: embed;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.img1 {
+    width: 300px;
+}
+
+.img2 {
+    width: 300px;
+}
+
+.img3 {
+    width: 200px;
+}
+
+
+.greet-base {
+    display: block;
+    unicode-bidi: embed;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.greet-rus {
+    color: blue;
+}
+
+.greet-eng {
+    color: mediumvioletred;
+}
+
+.greet-esp {
+    color: crimson;
+}

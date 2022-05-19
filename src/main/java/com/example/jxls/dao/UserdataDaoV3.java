@@ -3,7 +3,6 @@ package com.example.jxls.dao;
 import com.example.jxls.model.TimesheetV2;
 import com.example.jxls.model.User;
 import com.example.jxls.model.UserdataSingleV2;
-//import com.example.jxls.model.UserdataListV1;     --это не нужно т.к для создания комплексного объекта есть класс UserdataSingleV2
 import com.example.jxls.util.DateTimeUtil;
 
 //--NEW:2022.04.12
